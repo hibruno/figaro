@@ -39,4 +39,30 @@ module Figaro
       HerokuSet.run(options)
     end
   end
+  # figaro scalingo:set
+
+  desc "scalingo:set", "Send Figaro configuration to Scalingo"
+
+  method_option "app",
+    aliases: ["-a"],
+    desc: "Specify a Scalingo app"
+  method_option "environment",
+    aliases: ["-e"],
+    desc: "Specify an application environment"
+  method_option "path",
+    aliases: ["-p"],
+    default: "config/application.yml",
+    desc: "Specify a configuration file path"
+  method_option "remote",
+    aliases: ["-r"],
+    desc: "Specify a Scalingo git remote"
+
+  define_method "scalingo:set" do
+    require "figaro/cli/scalingo_set"
+    ScalingoSet.run(options)
+  end
+end
+
+
+  
 end
